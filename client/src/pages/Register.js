@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Button, Form } from "semantic-ui-react";
 import { useMutation } from "@apollo/client";
 import gql from "graphql-tag";
+import { AuthContext } from "../context/auth";
 
 const Register = (props) => {
+  const context = useContext(AuthContext);
   const [errors, setErrors] = useState({});
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -11,8 +13,9 @@ const Register = (props) => {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const [addUser, { loading }] = useMutation(REGISTER_USER, {
-    update(_, result) {
+    update(_, { data: { register: userData } }) {
       // console.log(result);
+      context.login(userData);
       props.history.push("/");
     },
     onError(err) {
