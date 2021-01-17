@@ -54,7 +54,7 @@ const Login = (props) => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <Button type="submit" primary>
-          Register
+          Log In
         </Button>
       </Form>
       {Object.keys(errors).length > 0 && (
