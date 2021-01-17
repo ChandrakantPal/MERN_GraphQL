@@ -32,20 +32,30 @@ const PostForm = () => {
     createPost();
   };
   return (
-    <Form onSubmit={onSubmit}>
-      <h2>Create a Post:</h2>
-      <Form.Field>
-        <Form.Input
-          placeholder="Hello World!"
-          name="body"
-          value={body}
-          onChange={(e) => setBody(e.target.value)}
-        />
-        <Button type="submit" color="teal">
-          Post
-        </Button>
-      </Form.Field>
-    </Form>
+    <>
+      <Form onSubmit={onSubmit}>
+        <h2>Create a Post:</h2>
+        <Form.Field>
+          <Form.Input
+            placeholder="Hello World!"
+            name="body"
+            value={body}
+            onChange={(e) => setBody(e.target.value)}
+            error={error ? true : false}
+          />
+          <Button type="submit" color="teal">
+            Post
+          </Button>
+        </Form.Field>
+      </Form>
+      {error && (
+        <div className="ui error message" style={{ marginBottom: 20 }}>
+          <ul className="list">
+            <li>{error.graphQLErrors[0].message}</li>
+          </ul>
+        </div>
+      )}
+    </>
   );
 };
 
