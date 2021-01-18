@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Form } from "semantic-ui-react";
+import { Button, Form, Grid } from "semantic-ui-react";
 import gql from "graphql-tag";
 import { useMutation } from "@apollo/client";
 import { FETCH_POSTS_QUERY } from "../utils/graphql";
@@ -33,19 +33,27 @@ const PostForm = () => {
   };
   return (
     <>
-      <Form onSubmit={onSubmit}>
+      <Form onSubmit={onSubmit} style={{ marginBottom: 20 }}>
         <h2>Create a Post:</h2>
         <Form.Field>
-          <Form.Input
-            placeholder="Hello World!"
-            name="body"
-            value={body}
-            onChange={(e) => setBody(e.target.value)}
-            error={error ? true : false}
-          />
-          <Button type="submit" color="teal">
-            Post
-          </Button>
+          <Grid>
+            <Grid.Row>
+              <Grid.Column width={14}>
+                <Form.Input
+                  placeholder="Hello World!"
+                  name="body"
+                  value={body}
+                  onChange={(e) => setBody(e.target.value)}
+                  error={error ? true : false}
+                />
+              </Grid.Column>
+              <Grid.Column width={1}>
+                <Button type="submit" color="teal" floated="left">
+                  Post
+                </Button>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
         </Form.Field>
       </Form>
       {error && (
