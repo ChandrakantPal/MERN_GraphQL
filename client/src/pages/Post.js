@@ -9,6 +9,7 @@ import {
   Icon,
   Image,
   Label,
+  Popup,
 } from "semantic-ui-react";
 import moment from "moment";
 import LikeButton from "../components/LikeButton";
@@ -78,18 +79,24 @@ const Post = (props) => {
               <hr />
               <Card.Content extra>
                 <LikeButton user={user} post={{ id, likes, likeCount }} />
-                <Button
-                  as="div"
-                  labelPosition="right"
-                  onClick={() => console.log("comment on post")}
-                >
-                  <Button basic color="blue">
-                    <Icon name="comments" />
-                  </Button>
-                  <Label basic color="blue" pointing="left">
-                    {commentCount}
-                  </Label>
-                </Button>
+                <Popup
+                  inverted
+                  content="Comment on post"
+                  trigger={
+                    <Button
+                      as="div"
+                      labelPosition="right"
+                      onClick={() => console.log("comment on post")}
+                    >
+                      <Button basic color="blue">
+                        <Icon name="comments" />
+                      </Button>
+                      <Label basic color="blue" pointing="left">
+                        {commentCount}
+                      </Label>
+                    </Button>
+                  }
+                />
                 {user && user.username === username && (
                   <DeleteButton postId={id} callback={deletePostCallback} />
                 )}
