@@ -10,7 +10,7 @@ const Home = () => {
   const { user } = useContext(AuthContext);
   const { loading, data } = useQuery(FETCH_POSTS_QUERY);
   return (
-    <Grid columns={3}>
+    <Grid columns={1}>
       <Grid.Row className="page-title">
         <h1>Recent posts</h1>
       </Grid.Row>
